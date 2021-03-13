@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.x" type="plugin" group="content" method="upgrade">
+	<name>Content - AddArticleToJshopping</name>
+	<author>KWProductions Co.</author>
+	<creationDate>Jan 12 2021</creationDate>
+	<copyright>(C) 2020-2025.Kian William Productions Co. All rights reserved.</copyright>
+	<authorEmail>webarchitect@kwproductions121.com</authorEmail>
+	<authorUrl>https://kwproductions121.com</authorUrl>
+	<version>1.0.0</version>
+    <license>GNU General Public License version 2 or later</license>
+	<description><![CDATA[ This plugin is developed by <a href="https://kwproductions121.com">KWProductions Co.</a> In case of any problem contact us: webarchitect@kwproductions121.com <br />. ]]></description>
+    <scriptfile>install.script.php</scriptfile>
+	<files>
+		<filename plugin="addarticletojshopping">addarticletojshopping.php</filename>		
+		<filename>index.html</filename>	
+	</files>
+     <languages folder="language">        
+        <language tag="en-GB">en-GB/en-GB.plg_content_addarticletojshopping.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_addarticletojshopping.sys.ini</language>
+    </languages>	
+	<updateservers>
+		<server type="collection" name="addarticletojshopping"><![CDATA[https://www.extensions.kwproductions121.com/myextensions.xml]]></server>
+     </updateservers>
+	<config>
+		<fields name="params">
+			<fieldset name="basic"> 
+                <field name="publishproduct" type="radio" default="1" label="PLG_CONTENT_ADDARTICLETOJSHOPPING_PUBLISH_LABEL" description="PLG_CONTENT_ADDARTICLETOJSHOPPING_PUBLISH_DESC">
+					<option value="1">Publish</option>
+					<option value="0">Not Publish</option>
+                </field>					
+				<field name="productemplate" type="text"  label="PLG_CONTENT_ADDARTICLETOJSHOPPING_TEMPLATE_LABEL" description="PLG_CONTENT_ADDARTICLETOJSHOPPING_TEMPLATE_DESC" default="default" />
+			    <field name="taxid" type="sql"  label="Select tax id" query="SELECT tax_id, tax_name FROM #__jshopping_taxes" key_field="tax_id" value_field="tax_name" description="PLG_CONTENT_ADDARTICLETOJSHOPPING_TAX_DESC" />
+         	    <field name="currencyid" type="sql"  label="Select currency id" query="SELECT currency_id, currency_name FROM #__jshopping_currencies" key_field="currency_id" value_field="currency_name" description="PLG_CONTENT_ADDARTICLETOJSHOPPING_CURRENCY_DESC" />
+         	    <field name="vendorid" type="sql"  label="Select vendor id" query="SELECT id, shop_name FROM #__jshopping_vendors" key_field="id" value_field="shop_name" description="PLG_CONTENT_ADDARTICLETOJSHOPPING_VENDOR_DESC" />
+				<field name="articlelength" type="text"  label="PLG_CONTENT_ADDARTICLETOJSHOPPING_LENGTH_LABEL" description="PLG_CONTENT_ADDARTICLETOJSHOPPING_LENGTH_DESC" default="555" />
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
