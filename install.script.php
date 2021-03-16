@@ -25,7 +25,7 @@
 <?php
 defined('_JEXEC') || die('Restricted access');
 use Joomla\CMS\Factory;
-class PlgContentAddarticletojshoppingInstallerScript
+class pkg_AddarticletojshoppingInstallerScript
 {
  public function install($parent)
  {
