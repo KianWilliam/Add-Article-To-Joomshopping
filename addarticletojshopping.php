@@ -1,27 +1,3 @@
-<?php
-
-/**
- * @package Plugin content - addarticletojshopping for Joomla! 3.x and Joomla 4 alpha-Beta
- * @version $Id: system - zoomart 1.0.0 2021-01-12 23:26:33Z $
- * @author KWProductions Co.
- * @(C) 2020-2025.Kian William Productions Co. All rights reserved.
- * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
- 
- This file is part of content - addarticletojshopping.
-    content - addarticletojshopping is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    plugin content - addarticletojshopping is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with content - addarticletojshopping.  If not, see <http://www.gnu.org/licenses/>.
- 
-**/
-
-?>
 
 <?php 
 defined('_JEXEC') or die;
@@ -32,6 +8,7 @@ use Joomla\CMS\Date\Date;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\String\StringHelper;
+
 
 class PlgContentAddarticletojshopping extends CMSPlugin
 {
@@ -45,21 +22,26 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 		$this->loadLanguage();
 	}
 	
-	public function onContentBeforeSave($context, $article, $isNew)
+	public function onContentAfterSave($context, $article, $isNew)
 	{
 		$app = Factory::getApplication();
 		$user = Factory::getUser();
-		$articlelen= $this->params->get('articlelength');
+				$articlelen= $this->params->get('articlelength');
 
-		
 		  if($app->isClient('site') && $context==='com_k2.item')
 		 {
 			 $lang = Factory::getLanguage();
 		$ls = $lang->getTag();
 		
 		$data = $app->input->post->getArray();
+	
 		
-			 if(empty($article->id)){
+				$query="SELECT product_id FROM #__jshopping_products where product_ean = ". $article->id;
+		        $this->db->setQuery($query);
+	            $id= $this->db->loadObject();
+		        $productid = $id->product_id;
+		
+			 if(empty($productid)){
 		
 		
 
@@ -68,7 +50,6 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 	$taxid = $this->params->get('taxid');
 	$producttemplate = $this->params->get('producttemplate');
 	$vendorid = $this->params->get('vendorid');
-
 
     
 		
@@ -128,6 +109,12 @@ class PlgContentAddarticletojshopping extends CMSPlugin
             $itemrec->{"meta_keyword_".$ls} = $article->metakey;
              $itemrec->{"meta_description_".$ls} = $article->metadesc;
 			 $itemrec->{"alias_".$ls}=$article->alias;
+			 
+			 	if($ls!=="en-GB"){
+		 		$itemrec->{"name_en-GB"}=$article->title;
+				$itemrec->{"short_description_".$ls}=$data['K2ExtraField_2'];	
+		        $itemrec->{"description_".$ls}=StringHelper::substr( $article->introtext,0, $articlelen )."...";
+			}
 
 		 
 		 
@@ -143,13 +130,19 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 		$itemrec->{"name_".$ls}=$article->title;
 	
 		 $itemrec->{"short_description_".$ls}=$data['K2ExtraField_2'];	
+		 		 $itemrec->{"description_".$ls}=StringHelper::substr($article->introtext, 0, $articlelen )."...";
 
-		 		 $itemrec->{"description_".$ls}=StringHelper::substr( $article->introtext,0, $articlelen )."...";
+		 		// $itemrec->{"description_".$ls}=$article->introtext;
 
 		 
-	
+		if($ls!=="en-GB"){
+		 		$itemrec->{"name_en-GB"}=$article->title;
+				$itemrec->{"short_description_en-GB"}=$data['K2ExtraField_2'];	
+		        $itemrec->{"description_en-GB"}=StringHelper::substr( $article->introtext,0, $articlelen )."...";
+			}
 		 
 		 $result = $this->db->insertObject('#__jshopping_products', $itemrec, 'product_id');
+		 var_dump($result);
 		 
 		 if($result==1)
 		 {
@@ -164,12 +157,12 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 				$query
     ->select(array('a.category_id', 'b.name'))
     ->from($this->db->quoteName('#__jshopping_categories', 'a'))
-    ->join('INNER', $this->db->quoteName('#__k2_categories', 'b') . ' ON ' . $this->db->quoteName('a.name_'.$ls) . ' = ' . $this->db->quoteName('b.name'))
-    ->where($this->db->quoteName('b.id') . ' LIKE ' . $this->db->quote($article->catid));
+    ->join('INNER', $this->db->quoteName('#__k2_categories', 'b') . ' ON ' . $this->db->quoteName('a.name_en-GB') . ' = ' . $this->db->quoteName('b.name'))
+    ->where($this->db->quoteName('b.id') . ' = ' . $this->db->quote($article->catid));
 	
 	$this->db->setQuery($query);
 	$r = $this->db->loadObject();
-	var_dump($r);
+	
 	
 				 	$query = $this->db->getQuery('true');
             $columns = array('product_id', 'category_id', 'product_ordering');
@@ -204,9 +197,13 @@ class PlgContentAddarticletojshopping extends CMSPlugin
                     $itemrec->{"meta_description_".$ls} = $article->metadesc;
 			        $itemrec->{"alias_".$ls}=$article->alias;
 			    	$itemrec->{"name_".$ls}=$article->title;
-	              
-				  $itemrec->{"short_description_".$ls}=$data['K2ExtraField_2'];	
-				  $itemrec->{"description_".$ls}=StringHelper::substr($article->introtext,0, $articlelen )."...";
+	                $itemrec->{"short_description_".$ls}=$data['K2ExtraField_2'];					
+				 $itemrec->{"description_".$ls}=StringHelper::substr($article->introtext,0, $articlelen )."...";
+				 	if($ls!=="en-GB"){
+		 		$itemrec->{"name_en-GB"}=$article->title;
+				$itemrec->{"short_description_en-GB"}=$data['K2ExtraField_2'];	
+		        $itemrec->{"description_en-GB"}=StringHelper::substr( $article->introtext,0, $articlelen )."...";
+			}
 
 					 
 					 $result = $this->db->updateObject('#__jshopping_products', $itemrec, 'product_id');
