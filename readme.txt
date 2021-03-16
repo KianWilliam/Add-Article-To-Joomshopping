@@ -1,4 +1,4 @@
-Content Plugin addarticiletojshopping version 1.0.0 and user plugin addfoldertojce are  free softwares which is developed by
+Content Plugin addarticiletojshopping version 1.0.0 and user plugin adduserfoldertojce are  free softwares which is developed by
 KWProductions Co.
 The license is GNU/GPLv3
 It is written for joomla 3.x, joomla 4 alpha and betta, 
@@ -18,7 +18,7 @@ It is easy to alter the table and add these new fields to it but I would rather 
  for example, if a user writes an article in French and the name of the category in k2 is: La Science, 
  in jshopping this category with the same name must be created.
  7-To input images in the article, users would be opened to images folder by clicking image icon, to upload images and then insert their images. To improve more privacy there are different ways, because of having other projects I chose this way:
-7-a: I added plugin addfoldertojce to add a folder in images which is the same name as username, it is for jce extension, the folder is added to images folder
+7-a: I added plugin adduserfoldertojce to add a folder in images which is the same name as username, it is for jce extension, the folder is added to images folder
 7-b: All new users are under publisher group or you can create a group under register and give that group the related actions
 7-c: I employed jce editor and made it default editor, in profile section I added images/$username for file directory
 So my extension now relys on 3 extensions: 1-jshopping 2-jce-editor 3-k2
