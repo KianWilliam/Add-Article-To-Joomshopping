@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.x" type="plugin" group="user" method="upgrade">
+	<name>User - AddUserFolderToJce</name>
+	<author>KWProductions Co.</author>
+	<creationDate>March 15 2021</creationDate>
+	<copyright>(C) 2020-2025.Kian William Productions Co. All rights reserved.</copyright>
+	<authorEmail>webarchitect@kwproductions121.com</authorEmail>
+	<authorUrl>https://kwproductions121.com</authorUrl>
+	<version>1.0.0</version>
+    <license>GNU General Public License version 2 or later</license>
+	<description><![CDATA[ This plugin is developed by <a href="https://kwproductions121.com">KWProductions Co.</a> In case of any problem contact us: webarchitect@kwproductions121.com <br />. ]]></description>
+	<files>
+		<filename plugin="adduserfoldertojce">adduserfoldertojce.php</filename>		
+		<filename>index.html</filename>	
+	</files>
+   
+	<updateservers>
+		<server type="collection" name="adduserfoldertojce"><![CDATA[https://www.extensions.kwproductions121.com/myextensions.xml]]></server>
+     </updateservers>
+	<config>
+	
+	</config>
+</extension>
