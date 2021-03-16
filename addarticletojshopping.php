@@ -181,11 +181,7 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 
 
 			 }else{
-					$query = $this->db->getQuery('true');
-				$query="SELECT product_id FROM #__jshopping_products where product_ean = ". $article->id;
-		        $this->db->setQuery($query);
-	            $id= $this->db->loadObject();
-		        $productid = $id->product_id;
+					
 		            $itemrec = new stdClass();	
 				    $itemrec->product_id = $productid;
 					
