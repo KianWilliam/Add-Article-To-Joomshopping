@@ -3,7 +3,7 @@ KWProductions Co.
 The license is GNU/GPLv3
 It is written for joomla 3.x, joomla 4 alpha and betta, 
 There are some conditions to work with this plugin :
-1- The plugin is designed to work with jce-editor, com_k2 and com_jshopping, it relies on both
+1- The plugin is designed to work with jce-editor, com_k2 and com_jshopping, it relies on all
 2-The user creates the same category structure both in k2 and jshopping, the name must be the same and children in different
  categories can not have the same name, names must be unique. In pro version, I shall add a plugin
  in such a way that as soon as a user creates a category in k2, the same would be created in jshopping automatically 
