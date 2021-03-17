@@ -30,8 +30,8 @@ I acted so fast for this plugin on account of other projects, I shall do more te
 images but this one is basic, the user must type or copy and paste the article with related images.
 
 you may download the extension @:
-https://www.extensions.kwproductions121.com/myplugins/add-artucke-to-jshopping.html
+https://www.extensions.kwproductions121.com/myplugins/add-article-to-joomshopping.html
 In case of any problem contact me at:
 webarchitect@kwproductions121.com
-https://github.com/KianWilliam/addarticletojshopping.git
+https://github.com/KianWilliam/Add-Article-To-Joomshopping
 long live science.
