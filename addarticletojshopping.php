@@ -56,6 +56,7 @@ class PlgContentAddarticletojshopping extends CMSPlugin
          $itemrec = new stdClass();	
          $itemrec->product_id = 0;
          $itemrec->product_quantity = 1.00;
+        //pro-version feature
          $itemrec->unlimited = 1;
 		 $itemrec->product_ean = $article->id;
 		 $itemrec->manufacturer_code = $user->id;
