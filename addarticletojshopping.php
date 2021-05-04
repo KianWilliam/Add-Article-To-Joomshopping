@@ -34,6 +34,8 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 		$ls = $lang->getTag();
 		
 		$data = $app->input->post->getArray();
+	        preg_match_all('/([\d]+)/', $data['K2ExtraField_1'], $match);
+
 	
 		
 				$query="SELECT product_id FROM #__jshopping_products where product_ean = ". $article->id;
@@ -77,8 +79,8 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 		           
 		 
 		 
-		 $itemrec->product_price=$data['K2ExtraField_1'];
-		 		 $itemrec->min_price=$data['K2ExtraField_1'];
+		 $itemrec->product_price=$match[0];
+		 		 $itemrec->min_price=$match[0];
 				 $itemrec->product_old_price=0.0;
 				 $itemrec->product_buy_price=0.0;
 		 		 $itemrec->different_prices=0;
@@ -187,9 +189,9 @@ class PlgContentAddarticletojshopping extends CMSPlugin
 				    $itemrec->product_id = $productid;
 					
 					$itemrec->date_modify= new DateTime($article->modified); 
-
-					$itemrec->product_price=$data['K2ExtraField_1'];
-		 		    $itemrec->min_price=$data['K2ExtraField_1'];
+                                 $itemrec->product_price=$match[0];
+		 		 $itemrec->min_price=$match[0];
+					
 				    $itemrec->{"meta_keyword_".$ls} = $article->metakey;
                     $itemrec->{"meta_description_".$ls} = $article->metadesc;
 			        $itemrec->{"alias_".$ls}=$article->alias;
