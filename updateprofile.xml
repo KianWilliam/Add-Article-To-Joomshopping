@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.0" type="plugin" group="user" method="upgrade">
+<name>User - Update Profile</name>
+	<author>KWProductions Co.</author>
+	<creationDate>April 21 2021</creationDate>
+	<copyright>(C) 2020-2025.Kian William Productions Co. All rights reserved.</copyright>
+	<authorEmail>webarchitect@kwproductions121.com</authorEmail>
+	<authorUrl>https://kwproductions121.com</authorUrl>
+	<version>1.0.0</version>
+    <license>GNU General Public License version 2 or later</license>
+	<description><![CDATA[ This plugin is developed by <a href="https://kwproductions121.com">KWProductions Co.</a> In case of any problem contact us: webarchitect@kwproductions121.com <br />. ]]></description>
+	<files>
+		<filename plugin="updateprofile">updateprofile.php</filename>		
+		<filename>index.html</filename>	
+	</files>
+     <languages folder="language">        
+        <language tag="en-GB">en-GB/en-GB.plg_user_updateprofile.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_user_updateprofile.sys.ini</language>
+    </languages>	
+	
+<config>
+	<fields name="params">
+	<fieldset name="basic">
+	
+</fieldset>
+	</fields>
+</config>
+</extension>
